@@ -1,0 +1,51 @@
+User-agent: Googlebot
+Disallow: 
+User-agent: googlebot-image
+Disallow: 
+User-agent: googlebot-mobile
+Disallow: 
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Disallow: /get/ref/id
+Disallow: /add-to-cart
+Disallow: /quantity
+Disallow: /delete
+Disallow: /get-city
+Disallow: /get-state
+Disallow: /get/code
+Disallow: /wishlist/add
+Disallow: /wishlist/delete
+Disallow: /shipping/delete
+Disallow: /generate-pdf/
+Disallow: /admin/dashboard
+Disallow: /admin/user-list
+Disallow: /admin/user-login/
+Disallow: /admin/user-edit/
+Disallow: /admin/product
+Disallow: /admin/product/list
+Disallow: /admin/product/edit/
+Disallow: /admin/product/delete/
+Disallow: /admin/category
+Disallow: /admin/category/delete/
+Disallow: /admin/reviews
+Disallow: /admin/reviews/edit/
+Disallow: /admin/reviews/delete/
+Disallow: /admin/reviews/add/
+Disallow: /admin/coupon
+Disallow: /admin/coupon/delete/
+Disallow: /admin/withdrawl/
+Disallow: /admin/orders
+Disallow: /admin/order/
+Disallow: /admin/orders/leads
+Disallow: /admin/orders/leads/delete/
+Disallow: /admin/footer
+Disallow: /admin/header
+Disallow: /admin/slider
+Disallow: /admin/leads
+Disallow: /admin/pages
+Disallow: /admin/article
+Disallow: /admin/uploaded-files/
+
+
+Sitemap: https://cupofdeals.com/sitemap.xml

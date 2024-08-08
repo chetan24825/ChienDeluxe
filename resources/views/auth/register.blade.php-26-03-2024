@@ -1,0 +1,236 @@
+@extends('fronts.layouts.app')
+@section('content')
+    <div class="pack-breadcumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcumb-text text-center">
+                       <ul class="breadcum-list">
+                            <li><a wire:navigate href="{{ route('webpage') }}">Home</a></li>
+                            <li><a wire:navigate href="{{ url()->current() }}">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="contact-page bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <div class="Contact-box-form sign-up-box">
+                        <div class="sec-title text-left" style="margin-bottom:20px;">
+                            <h2>Create An Account</h2>
+                        </div>
+                        <div class="form-inner">
+                            <form class="form-inline default-form" method="POST" id="contact-form"
+                                action="{{ route('user.register') }}" novalidate="novalidate">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group col-sm-6 {{ $errors->has('referrer_id') ? ' has-error' : '' }}">
+                                        <input type="text" id="ref_name" name="sponsorid"
+                                            class="form-control form--control @error('referrer_id') is-invalid @enderror "
+                                            placeholder="Sponsor ID" autocomplete="off" value="<?php if (isset($_GET['referral'])) {
+                                                echo $_GET['referral'];
+                                            } ?>" />
+                                        <div id="ref">
+                                            <?php if (isset($_GET['referral'])) {
+                                                $user = App\Models\User::select('id', 'user_name','name')->where('user_name', $_GET['referral'])->first();
+                                                if ($user != NULL) {
+                                            ?>
+                                            <span class='help-block2'><strong class='text-success'>Your Sponsor is:
+                                                    {{ $user->name }}</strong></span>
+                                            <input type="hidden" id="referrer_id" value="{{ $user->id }}"
+                                                name="referrer_id">
+                                            <?php } else { ?>
+                                            <strong style="color: #f90808">Sponsor ID Not Found</strong>
+                                            <?php } ?>
+                                            <?php } ?>
+                                        </div>
+                                        @if ($errors->has('referrer_id'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('referrer_id') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                            name="email" placeholder="Email" value="{{ old('email') }}">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            name="name" placeholder="Full Name" required aria-required="true"
+                                            value="{{ old('name') }}">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    {{-- <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control @error('lname') is-invalid @enderror"
+                                            name="lname" placeholder="Last Name" required="" aria-required="true"
+                                            value="{{ old('lname') }}">
+                                        @error('lname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div> --}}
+
+
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control " name="phone1"
+                                            value="{{ old('phone1') }}" placeholder="Phone" required aria-required="true">
+                                        @error('phone1')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    {{-- <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control " name="phone2" placeholder="Phone 2"
+                                            required aria-required="true">
+                                        @error('phone2')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div> --}}
+
+
+
+                                    {{-- Address --}}
+
+                                    {{-- <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control " name="country" placeholder="Country"
+                                            required aria-required="true">
+                                        @error('country')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control " name="state" placeholder="State"
+                                            required aria-required="true">
+                                        @error('state')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control " name="city" placeholder="City"
+                                            required aria-required="true">
+                                        @error('city')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control " name="address" placeholder="Address"
+                                            required aria-required="true">
+                                        @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <input type="text" class="form-control" name="zipcode" placeholder="Zipcode"
+                                            required aria-required="true">
+                                        @error('zipcode')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div> --}}
+
+
+
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            name="password" placeholder="Password" required aria-required="true">
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                        <input type="password"
+                                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation" placeholder="Retype Password" required
+                                            aria-required="true">
+                                        @error('password_confirmation')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn centred">
+                                        <button type="submit" class="theme-btn-two">Create
+                                            Account</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="text-center crete-line"><a href='{{ route('login') }}'>Log
+                                    in</a> &nbsp &nbsp &nbsp|&nbsp &nbsp &nbsp
+                                <a href='{{ route('password.request') }}'>Forget Password
+                                </a>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).on('keyup', '#ref_name', function() {
+            var ref_id = $('#ref_name').val();
+            var token = "{{ csrf_token() }}";
+            $.ajax({
+                type: "POST",
+                url: "{{ route('get.ref.id') }}",
+                data: {
+                    'ref_id': ref_id,
+                    '_token': token
+                },
+                success: function(data) {
+                    $("#ref").html(data);
+                }
+            });
+        });
+    </script>
+@endsection
