@@ -40,25 +40,8 @@
 
                                     <h3 class="profile-username text-center">{{ Auth::user()->name }}
                                         <p class="text-muted text-center">{{ Auth::user()->email }}</p>
-
                                     </h3>
 
-
-                                    <ul class="list-group list-group-unbordered mb-3">
-                                        <li class="list-group-item">
-                                            <b>UserId: </b> <a class="float-right">{{ Auth::user()->user_name }}</a>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <b>Sponsor Name: </b> <a class="float-right">
-                                                @if (isset($sponser->name))
-                                                    {{ ucwords($sponser->name) }}
-                                                @else
-                                                    Admin
-                                                @endif
-                                            </a>
-                                        </li>
-
-                                    </ul>
                                 </div>
 
                             </div>
@@ -71,11 +54,8 @@
                                         <li class="nav-item"><a class="nav-link active" href="#activity"
                                                 data-toggle="tab">User
                                                 Profile</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Bank
-                                                Detail</a>
-                                        </li>
-                                        {{-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Kyc</a>
-                                        </li> --}}
+                                        
+                                        
                                         <li class="nav-item"><a class="nav-link" href="#changepassword"
                                                 data-toggle="tab">Change
                                                 Password</a>
@@ -172,140 +152,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane" id="timeline">
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label  class="col-form-label">Bank
-                                                        Name</label>
-                                                    <input type="text" class="form-control"
-                                                        name="bank_name" value="{{ Auth::user()->bank_name }}"
-                                                        placeholder="">
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <label  class="col-form-label">Holder
-                                                        Name</label>
-                                                    <input type="text" class="form-control"
-                                                        name="account_name" value="{{ Auth::user()->account_name }}"
-                                                        placeholder="">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label  class="col-form-label">Bank A/c
-                                                        No</label>
-
-                                                    <input type="text" class="form-control"
-                                                        value="{{ Auth::user()->account_number }}" name="account_number"
-                                                        placeholder="">
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <label  class="col-form-label">IFSC
-                                                        Code</label>
-                                                    <input type="text" class="form-control"
-                                                        value="{{ Auth::user()->ifsc_code }}" placeholder=""
-                                                        name="ifsc_code">
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
 
 
-                                        {{-- <div class="tab-pane" id="settings">
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="signinSrEmail">Aadhaar Front</label>
-                                                        <div class="input-group" data-toggle="aizuploader"
-                                                            data-type="image" data-multiple="false">
-                                                            <div class="input-group-prepend">
-                                                                <div
-                                                                    class="input-group-text bg-soft-secondary font-weight-medium">
-                                                                    Browse
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-control file-amount">Choose File</div>
-                                                            <input type="hidden" name="front_image"
-                                                                value="{{ Auth::user()->front_image }}"
-                                                                class="selected-files">
-                                                        </div>
-                                                        <div class="file-preview box sm">
-
-                                                        </div>
-                                                        <small class="text-muted">
-                                                            Use 300x300 sizes images.</small>
-                                                        <br>
-                                                        @error('front_image')
-                                                            <span class="text-danger" role="alert">
-                                                                <strong>{{ ucwords($message) }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="signinSrEmail">Aadhaar Back</label>
-                                                        <div class="input-group" data-toggle="aizuploader"
-                                                            data-type="image" data-multiple="false">
-                                                            <div class="input-group-prepend">
-                                                                <div
-                                                                    class="input-group-text bg-soft-secondary font-weight-medium">
-                                                                    Browse
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-control file-amount">Choose File</div>
-                                                            <input type="hidden" name="back_image"
-                                                                value="{{ Auth::user()->back_image }}"
-                                                                class="selected-files">
-                                                        </div>
-                                                        <div class="file-preview box sm">
-
-                                                        </div>
-                                                        <small class="text-muted">
-                                                            Use 300x300 sizes images.</small>
-                                                        <br>
-                                                        @error('back_image')
-                                                            <span class="text-danger" role="alert">
-                                                                <strong>{{ ucwords($message) }}</strong>
-                                                            </span>
-                                                        @enderror
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="signinSrEmail">Pancard</label>
-                                                        <div class="input-group" data-toggle="aizuploader"
-                                                            data-type="image" data-multiple="false">
-                                                            <div class="input-group-prepend">
-                                                                <div
-                                                                    class="input-group-text bg-soft-secondary font-weight-medium">
-                                                                    Browse
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-control file-amount">Choose File</div>
-                                                            <input type="hidden" name="pan_card"
-                                                                value="{{ Auth::user()->pan_card }}"
-                                                                class="selected-files">
-                                                        </div>
-                                                        <div class="file-preview box sm">
-
-                                                        </div>
-                                                        <small class="text-muted">
-                                                            Use 300x300 sizes images.</small>
-                                                        <br>
-                                                        @error('pan_card')
-                                                            <span class="text-danger" role="alert">
-                                                                <strong>{{ ucwords($message) }}</strong>
-                                                            </span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div> --}}
+                                      
 
                                         <div class="tab-pane" id="changepassword">
                                             <div class="form-group row">

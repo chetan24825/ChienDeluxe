@@ -33,7 +33,6 @@ class UserController extends Controller
         $user->name = $requset->name;
         $user->email = $requset->email;
         $user->profile_image = $requset->profile_image;
-        // $user->country = $requset->country;
         $user->mobile = $requset->mobile;
         $user->state = $requset->state;
         $user->city = $requset->city;
