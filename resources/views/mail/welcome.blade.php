@@ -537,24 +537,21 @@
 
                                 <div class="welcome-msg">
                                     <center><img src="{{ asset('celebrate.png') }}" width="160"></center>
-                                    <h3>Welcome <a href="#" class="user-name">Sarthak</a> to The <a href="#" class="user-name">Cup Of Deals</a></h3>
+                                    <h3>Welcome <a href="#" class="user-name">{{ $user['name'] }}</a> to The <a
+                                            href="{{ route('/') }}" class="user-name">{{ config('app.name') }}</a>
+                                    </h3>
 
 
                                     <h4>Here is Your Account Login Details</h4>
 
                                     <ul class="login-detail">
                                         <li>
-                                            Username: <span>{{ $user['user_name'] }}</span>
+                                            Username: <span>{{ $user['email'] }}</span>
                                         </li>
                                         <li>Password: <span>{{ $password }}</span></li>
                                     </ul>
 
-                                    <div class="share-link">
-                                        <h3>Shop Refer & Earn</h3>
-                                        <p>Share your unique Referral URL with your friends and Earn Lifetime on their Purchases</p>
-                                        <a href="{{route('user.register', $user['user_name'])}}">{{ route('user.register', $user['user_name']) }}</a>
 
-                                    </div>
                                 </div>
 
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
@@ -592,7 +589,7 @@
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td class="content-block">
-                                    <span class="apple-link">Cup Of Deals</span>
+                                    <span class="apple-link">{{ config('app.name') }}</span>
 
                                 </td>
                             </tr>

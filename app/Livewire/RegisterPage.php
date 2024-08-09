@@ -30,10 +30,7 @@ class RegisterPage extends Component
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
             'password_confirmation' => 'required',
-            'user_name' => 'required|min:4|max:255|alpha_dash|unique:users,user_name',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required',
-            'phone' => 'required',
+            
         ];
     }
 
