@@ -254,12 +254,10 @@
                                 <li>
                                     <a wire:navigate href="{{ route('wishlist') }}" title="Vist Wishlist"> <i
                                             class="lar la-heart"></i>
-                                        <span>0</span>
+                                        @livewire('component-wishlist-count')
                                     </a>
                                 </li>
                             @endauth
-
-
                         </ul>
 
 
@@ -381,7 +379,7 @@
                                 href="{{ route('webpage') }}">Home</a>
                         </li>
 
-                        @foreach (App\Models\Category::where('status', 1)->whereIn('visible', [0, 1])->orderBy('sort',"ASC")->take(6)->get() as $category)
+                        @foreach (App\Models\Category::where('status', 1)->whereIn('visible', [0, 1])->orderBy('sort', 'ASC')->take(6)->get() as $category)
                             <li class="nav-item ">
                                 <a wire:navigate title="{!! $category->category_name !!}"
                                     href="{{ route('category.detail', $category->slug) }}" class="nav-link"

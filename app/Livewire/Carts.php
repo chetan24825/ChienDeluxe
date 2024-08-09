@@ -159,7 +159,7 @@ class Carts extends Component
     function addToWishlist($id)
     {
         (new ComponentWishlist())->addToWishlist($id);
-        $this->dispatch('addCartItems');
+        $this->dispatch('wishlistUpdated');
     }
 
 

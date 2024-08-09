@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="cart-left">
                 <h4>My Favourites</h4>
-                <p>You Have 1 item in your Wishlist</p>
+                <p>You Have {{count($wishlistProduct)}} item in your Wishlist</p>
                 <div class="row">
                     @forelse ($wishlistProduct as $wishlist)
                         <div class="col-md-6">
@@ -49,7 +49,7 @@
                                 <div class="remove-cart">
                                     @if (!isset($cart) || !is_countable($cart) || !array_key_exists($wishlist->product->id, $cart))
                                         <a href="javascript:void(0)"
-                                            wire:click.debounce.1000ms="addToCart({{ $wishlist->id }})">
+                                            wire:click.debounce.1000ms="addToCart({{ $wishlist->product->id }})">
                                             <i class="las la-shopping-cart"></i>Add To Cart
                                         </a>
                                     @endif

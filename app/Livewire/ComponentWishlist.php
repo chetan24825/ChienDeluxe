@@ -5,13 +5,14 @@ namespace App\Livewire;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Wishlist;
+use App\Livewire\Productlists;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class ComponentWishlist extends Component
 {
-    public $wishlist = [];
-    protected $listeners = ['addCartItems', 'cartItems'];
+    public $wishlist ;
+    protected $listeners = ['addCartItems', 'cartItems', 'wishlistUpdated'];
 
 
     public function mount()
@@ -53,8 +54,9 @@ class ComponentWishlist extends Component
         } else {
             session()->flash('warning', 'User not authenticated');
         }
-        $this->loadWishlist(); // Refresh the wishlist view
         $this->dispatch('addCartItems');
+        $this->loadWishlist(); // Refresh the wishlist view
+
     }
 
     public function removeFromWishlist($wishlistId)
