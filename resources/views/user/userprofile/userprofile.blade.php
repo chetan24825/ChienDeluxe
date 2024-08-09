@@ -30,7 +30,8 @@
                                     <div class="text-center">
                                         @if (Auth::user()->profile_image)
                                             <img class="profile-user-img img-fluid img-circle"
-                                                src="{{ uploaded_asset(Auth::user()->profile_image) }}" alt="User profile picture">
+                                                src="{{ uploaded_asset(Auth::user()->profile_image) }}"
+                                                alt="User profile picture">
                                         @else
                                             <img class="profile-user-img img-fluid img-circle"
                                                 src="{{ asset('backend/dist/img/user.png') }}" alt="User profile picture">
@@ -54,8 +55,8 @@
                                         <li class="nav-item"><a class="nav-link active" href="#activity"
                                                 data-toggle="tab">User
                                                 Profile</a></li>
-                                        
-                                        
+
+
                                         <li class="nav-item"><a class="nav-link" href="#changepassword"
                                                 data-toggle="tab">Change
                                                 Password</a>
@@ -68,45 +69,36 @@
                                         <div class="active tab-pane" id="activity">
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
-                                                    <label  class="col-form-label">Name</label>
+                                                    <label class="col-form-label">Name</label>
                                                     <input type="text" class="form-control" name="name"
                                                         value="{{ Auth::user()->name }}" placeholder="">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label  class="col-form-label">Email</label>
+                                                    <label class="col-form-label">Email</label>
 
                                                     <input type="email" class="form-control" name="email"
-                                                         value="{{ Auth::user()->email }}"
-                                                        placeholder="">
+                                                        value="{{ Auth::user()->email }}" placeholder="">
                                                 </div>
 
 
                                                 <div class="col-sm-6">
-                                                    <label  class="col-form-label">State</label>
-                                                    <select class=" form-control @error('state') is-invalid @enderror "
-                                                        data-live-search="true" data-placeholder="Select your country"
-                                                        name="state" >
-                                                        @foreach (\App\Models\State::where('country_id', 99)->get() as $key => $state)
-                                                            <option value="{{ $state->name }}"
-                                                                {{ $state->name == Auth::user()->state ? 'selected' : '' }}>
-                                                                {{ $state->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <label class="col-form-label">State</label>
+                                                    <input type="text" class="form-control" name="state"
+                                                        value="{{ Auth::user()->state }}" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <label  class="col-form-label">City</label>
+                                                    <label class="col-form-label">City</label>
                                                     <input type="text" class="form-control" name="city"
                                                         value="{{ Auth::user()->city }}" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <label  class="col-form-label">Zipcode</label>
+                                                    <label class="col-form-label">Zipcode</label>
                                                     <input type="text" class="form-control" name="post_code"
                                                         value="{{ Auth::user()->post_code }}" placeholder="">
                                                 </div>
-                                                
+
                                                 <div class="col-sm-6">
                                                     <label class="col-form-label">Phone</label>
                                                     <input type="text" class="form-control" name="mobile"
@@ -116,8 +108,8 @@
                                                 <div class="col-sm-6 mt-2">
                                                     <div class="form-group">
                                                         <label for="signinSrEmail">User Profile</label>
-                                                        <div class="input-group" data-toggle="aizuploader"
-                                                            data-type="image" data-multiple="false">
+                                                        <div class="input-group" data-toggle="aizuploader" data-type="image"
+                                                            data-multiple="false">
                                                             <div class="input-group-prepend">
                                                                 <div
                                                                     class="input-group-text bg-soft-secondary font-weight-medium">
@@ -144,34 +136,33 @@
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <label for="inputExperience"
-                                                        class="col-form-label">Address</label>
+                                                    <label for="inputExperience" class="col-form-label">Address</label>
                                                     <textarea class="form-control" id="inputExperience" rows="5" cols="4" name="street_address"
                                                         placeholder="">{{ Auth::user()->street_address }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
 
-                                       
 
 
-                                      
+
+
 
                                         <div class="tab-pane" id="changepassword">
                                             <div class="form-group row">
 
                                                 <div class="col-sm-12">
-                                                    <label  class="col-form-label">New Passwprd</label>
+                                                    <label class="col-form-label">New Passwprd</label>
                                                     <input type="password" class="form-control" name="password"
-                                                         value="" placeholder="">
+                                                        value="" placeholder="">
                                                 </div>
 
                                                 <div class="col-sm-12">
-                                                    <label  class=" col-form-label">Confirm
+                                                    <label class=" col-form-label">Confirm
                                                         Password</label>
 
                                                     <input type="password" class="form-control" name="confirmpassword"
-                                                         value="" placeholder="">
+                                                        value="" placeholder="">
                                                 </div>
                                             </div>
                                         </div>
