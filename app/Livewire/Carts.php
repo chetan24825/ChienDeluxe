@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Coupon;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\UserCart;
@@ -13,6 +14,9 @@ class Carts extends Component
 
     public $carts;
     public $quantity;
+    public $promoCode;
+    public $message;
+    public $promoCodeSession;
 
     public function mount()
     {
@@ -21,6 +25,7 @@ class Carts extends Component
 
     public function cartlist()
     {
+        $this->promoCodeSession = session()->get('promoCodes');
         $this->carts  = session()->get('cart');
     }
 
@@ -89,6 +94,48 @@ class Carts extends Component
         $this->dispatch('incrementQty', $id);
         redirect()->back();
     }
+
+
+
+    public function applyPromoCode()
+    {
+        $this->validate([
+            'promoCode' => 'required|string',
+        ]);
+
+        $promoCode = Coupon::where('coupen_name', $this->promoCode)
+            ->where('valid_for_date', '>', now())
+            ->where('status', 1)
+            ->first();
+
+        if ($promoCode) {
+            $this->message = "<em class='text-success'>Promo code applied successfully! {$promoCode->coupen_amount}% discount applied</em>";
+            $promoCodes = session()->get('promoCodes', []);
+            $promoCodes['promoCode'] = [
+                'id' => $promoCode->id,
+                'code' => $promoCode->coupen_name,
+                'amount' => $promoCode->coupen_amount,
+                'status' => $promoCode->status,
+                'expiry' => $promoCode->valid_for_date,
+            ];
+            session()->put('promoCodes', $promoCodes);
+            $this->cartlist();
+            $this->dispatch('addCartItems');
+        } else {
+            $this->message = "<em class='text-danger'>Invalid promo code!</em>";
+        }
+    }
+
+
+    function removePromoCode()
+    {
+        session()->forget('promoCodes');
+        $this->cartlist();
+        $this->dispatch('addCartItems');
+    }
+
+
+
 
     public function tocarddelete($productId)
     {

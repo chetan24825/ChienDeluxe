@@ -21,9 +21,10 @@ class CoupenController extends Controller
             'coupen_amount' => 'required|numeric'
         ]);
         $coupon = new Coupon();
-        $coupon->coupen_code = uniqid();
-        $coupon->coupen_name=$request->coupen_name;
+        $coupon->coupen_name = $request->coupen_name;
         $coupon->coupen_amount = $request->coupen_amount;
+        $coupon->valid_for_date = now()->addDays(1);
+
         if ($coupon->save()) {
             return redirect()->back()->with('success', 'Coupen Create Successfully');
         }
@@ -45,13 +46,14 @@ class CoupenController extends Controller
         $this->validate($request, [
             "id" => "required|numeric",
             "coupen_amount" => "required|numeric",
-            "status" => "required|numeric"
+            "status" => "required|numeric",
+            'valid_for_date' => 'required|date|after:now',
         ]);
         $coupon = Coupon::find($request->id);
         $coupon->coupen_amount = $request->coupen_amount;
-        $coupon->coupen_name=$request->coupen_name;
+        $coupon->coupen_name = $request->coupen_name;
+        $coupon->valid_for_date = $request->valid_for_date;
         $coupon->status = $request->status;
-        $coupon->share_with = $request->share_with;
         if ($coupon->save()) {
             return redirect()->back()->with('success', 'Coupen Create Successfully');
         }

@@ -8,20 +8,7 @@ class CheckoutOrder extends Component
 {
     protected $listeners = ['addCartItems', 'cartItems'];
 
-    public $courier = true;
-    public $pickup = false;
 
-    public function toggleCourier()
-    {
-        $this->courier = true;
-        $this->pickup = false;
-    }
-
-    public function togglePickup()
-    {
-        $this->pickup = true;
-        $this->courier = false;
-    }
 
     public function decrementQty($productId)
     {
@@ -42,12 +29,20 @@ class CheckoutOrder extends Component
         $this->dispatch('addCartItems');
     }
 
+    function removePromoCode()
+    {
+        session()->forget('promoCodes');
+        $this->dispatch('addCartItems');
+    }
+
 
     public function render()
     {
         $carts = session()->get('cart');
+        $promoCodeSession = session()->get('promoCodes');
         return view('livewire.checkout-order', [
             'carts' => $carts,
+            'promoCodeSession' => $promoCodeSession
         ]);
     }
 }

@@ -1562,5 +1562,17 @@ a.view-btn:hover
     opacity: 1;
 }
 
+.blockquote:hover {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 

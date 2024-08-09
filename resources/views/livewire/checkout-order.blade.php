@@ -64,14 +64,28 @@
             </p>
         </div>
 
+        <div class="sub-total">
+            @if (isset($promoCodeSession['promoCode']) && isset($promoCodeSession['promoCode']['amount']))
+                <p>
+                    Promo Code ({{ $promoCodeSession['promoCode']['amount'] }}%)
+                    <span>
+                        {{ get_setting('symbol') }}
+                        {{ $totalNetAmount * ($promoCodeSession['promoCode']['amount'] / 100) }}
+                        <i class="las la-trash-alt text-danger blockquote" wire:click='removePromoCode()'></i>
+                    </span>
+                </p>
+            @endif
+        </div>
+
         <div class="total">
             <p>Total
-                <span>{{ get_setting('symbol') }}{{ $totalNetAmount + get_setting('shipping_charge') }}</span>
+                <span>
+                    {{ get_setting('symbol') }}
+                    {{ get_setting('shipping_charge') + $totalNetAmount - (isset($promoCodeSession['promoCode']['amount']) ? $totalNetAmount * ($promoCodeSession['promoCode']['amount'] / 100) : 0) }}
+                </span>
+
             </p>
         </div>
-        {{-- <div class="payment-btn">
-                <a href="#" class="purchase-btn">Proceed to purchase</a>
-
-            </div> --}}
+       
     </div>
 </div>

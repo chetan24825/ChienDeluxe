@@ -51,8 +51,8 @@ Route::get('/refresh-csrf', function () {
 });
 
 Route::post('/popuplogin', [FrontController::class, 'popuplogin'])->name('popuplogin');
-// Route::get('/thankyou', [FrontController::class, 'thankyou'])->name('thankyou');
-Route::get('/thankyou/{id}/order', [FrontController::class, 'thankyou'])->name('thankyou');
+Route::get('/thankyou', [FrontController::class, 'thankyou'])->name('thankyou');
+// Route::get('/thankyou/{id}/order', [FrontController::class, 'thankyou'])->name('thankyou');
 
 Route::post('/reviews', [FrontController::class, 'toreviews'])->name('reviews');
 Route::get('/verify', [FrontController::class, 'toverification']);
