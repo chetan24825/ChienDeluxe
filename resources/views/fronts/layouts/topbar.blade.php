@@ -277,9 +277,15 @@
                                             <a class="nav-link @if (Route::is('webpage')) active @endif"
                                                 aria-current="page" href="{{ route('webpage') }}">Home</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Clothing</a>
-                                        </li>
+
+                                        @foreach (App\Models\Category::where('status', 1)->whereIn('visible', [0, 1])->orderBy('sort', 'ASC')->take(6)->get() as $category)
+                                            <li class="nav-item ">
+                                                <a wire:navigate title="{!! $category->category_name !!}"
+                                                    href="{{ route('category.detail', $category->slug) }}"
+                                                    class="nav-link  {{ request()->segment(2) === $category->slug ? 'active' : '' }} "
+                                                    title="{{ $category->category_name }}">{{ $category->category_name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </nav>
@@ -378,11 +384,11 @@
                             <a class="nav-link @if (Route::is('webpage')) active @endif" aria-current="page"
                                 href="{{ route('webpage') }}">Home</a>
                         </li>
-
                         @foreach (App\Models\Category::where('status', 1)->whereIn('visible', [0, 1])->orderBy('sort', 'ASC')->take(6)->get() as $category)
                             <li class="nav-item ">
                                 <a wire:navigate title="{!! $category->category_name !!}"
-                                    href="{{ route('category.detail', $category->slug) }}" class="nav-link"
+                                    href="{{ route('category.detail', $category->slug) }}"
+                                    class="nav-link  {{ request()->segment(2) === $category->slug ? 'active' : '' }} "
                                     title="{{ $category->category_name }}">{{ $category->category_name }}</a>
                             </li>
                         @endforeach
