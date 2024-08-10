@@ -36,31 +36,6 @@ $(function () {
         $('#disamount').text(percentageAmount);
     });
 
-    $('#category').on('change', function () {
-        var category = $(this).val();
-        var token = $('meta[name="csrf-token"]').attr('content');
 
-        axios.post("{{ route('sub.category.ajax') }}", {
-            id: category,
-            '_token': token,
-        })
-            .then(function (response) {
-                var subcategory = response.data;
-                $('#subcategory').html('');
-                $('#subcategory').append(
-                    '<option value="">---Select---</option>');
-                for (var i = 0; i < subcategory.length; i++) {
-                    $('#subcategory').append(
-                        '<option value="' + subcategory[i].id + '">' + subcategory[i]
-                            .sub_category_name +
-                        '</option>');
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
-
-    
 });
 

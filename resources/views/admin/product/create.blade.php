@@ -33,7 +33,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label for="inputStatus">Category</label>
+                                    <label for="inputStatus">Category <span class="text-danger">*</span></label>
                                     <select id="category" name="category" required
                                         class="select2 form-control custom-select">
                                         <option value="">--Select--</option>
@@ -64,7 +64,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="attribute_id">Attribute Collection</label>
+                                    <label for="attribute_id">Attribute Collection <span
+                                            class="text-danger">*</span></label>
                                     <select id="attribute_id" name="attribute_id[]" multiple required
                                         class="select2 form-control custom-select">
                                         @foreach ($attributes as $attribute)
@@ -94,7 +95,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label for="inputName">Product Name</label>
+                                    <label for="inputName">Product Name <span class="text-danger">*</span></label>
                                     <input type="text" id="inputName" class="form-control" name="product_name"
                                         value="{{ old('product_name') }}" required>
                                     @error('product_name')
@@ -106,7 +107,8 @@
 
 
                                 <div class="form-group">
-                                    <label for="signinSrEmail">Select The Main Image </label>
+                                    <label for="signinSrEmail">Select The Main Image <span
+                                            class="text-danger">*</span></label>
 
                                     <div class="input-group" data-toggle="aizuploader" data-type="image"
                                         data-multiple="false">
@@ -135,7 +137,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="signinSrEmail">Select The Images </label>
+                                    <label for="signinSrEmail">Select The Images <span class="text-danger">*</span> </label>
 
                                     <div class="input-group" data-toggle="aizuploader" data-type="image"
                                         data-multiple="true">
@@ -163,7 +165,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputDescription">Product Description</label>
+                                    <label for="inputDescription">Product Description <span
+                                            class="text-danger">*</span></label>
                                     <textarea id="ckeditor" class="form-control" name="description" rows="4" required>{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger" role="alert">
@@ -172,7 +175,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputStatus">Status</label>
+                                    <label for="inputStatus">Status <span class="text-danger">*</span></label>
                                     <select id="inputStatus" name="status" class="form-control custom-select" required>
                                         <option value="">Select</option>
                                         <option value="1" selected>Publish</option>
@@ -225,7 +228,8 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="inputEstimatedBudget">Market Price (MRP)</label>
+                                            <label for="inputEstimatedBudget">Market Price (MRP) <span
+                                                    class="text-danger">*</span></label>
                                             <input type="number" id="mrp" name="market_price"
                                                 class="form-control" value="{{ old('market_price') }}" step="1"
                                                 required>
@@ -241,7 +245,8 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="inputSpentBudget">Purchase Cost</label>
+                                            <label for="inputSpentBudget">Purchase Cost <span
+                                                    class="text-danger">*</span></label>
                                             <input type="number" id="purchase" name="purchase_cost"
                                                 class="form-control" value="{{ old('purchase_cost') }}" step="1"
                                                 required>
@@ -255,8 +260,8 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="inputEstimatedDuration">GST <small
-                                                    class="text-danger">(%)</small></label>
+                                            <label for="inputEstimatedDuration">GST <small class="text-danger">(%)</small>
+                                                <span class="text-danger">*</span></label>
                                             <input type="number" id="gst" value="{{ old('gst') }}"
                                                 class="form-control" name="gst" step="0.1" required>
 
@@ -271,9 +276,9 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="netcost">Net Cost</label>
-                                            <input type="number" id="netcost" name="net_cost" class="form-control"
-                                                value="{{ old('net_cost') }}" step="0.1" required>
+                                            <label for="netcost">Net Cost<span class="text-danger">*</span></label>
+                                            <input type="text" id="netcost" name="net_cost" class="form-control"
+                                                value="{{ old('net_cost') }}" min="0" step="0.1" required>
 
                                             @error('net_cost')
                                                 <span class="text-danger" role="alert">
@@ -286,7 +291,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="saleprice">Sale Price <small>(After Discount
-                                                    )</small></label>
+                                                    )</small><span class="text-danger">*</span></label>
                                             <input type="number" id="saleprice" name="sale_price" class="form-control"
                                                 value="{{ old('sale_price') }}" step="0.1" required>
                                             @error('sale_price')
@@ -302,7 +307,8 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="inputEstimatedDuration">Stock</label>
+                                            <label for="inputEstimatedDuration">Stock<span
+                                                    class="text-danger">*</span></label>
                                             <input type="number" id="inputEstimatedDuration" name="stock"
                                                 class="form-control" value="{{ old('stock') }}" step="0.1"
                                                 required>
@@ -345,11 +351,11 @@
                                         <input type="text" class="form-control" value="colors" disabled>
                                     </div>
                                     <div class="col-md-8">
-                                        <select id="colorPicker" name="colors[]" required
-                                            class="select2 form-control custom-select" multiple disabled>
+                                        <select id="colorPicker" required class="select2 form-control custom-select"
+                                            multiple disabled>
 
                                             @foreach (App\Models\Color::orderBy('name', 'asc')->get() as $key => $color)
-                                                <option value="{{ $color->code }}" data-name="{{ $color->name }}">
+                                                <option value="{{ $color->id }}" data-name="{{ $color->name }}">
                                                     {{ $color->name }}
                                                 </option>
                                             @endforeach
@@ -459,6 +465,33 @@
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     <script>
+        $('#category').on('change', function() {
+            var category = $(this).val();
+            var token = $('meta[name="csrf-token"]').attr('content');
+
+            axios.post("{{ route('sub.category.ajax') }}", {
+                    id: category,
+                    '_token': token,
+                })
+                .then(function(response) {
+                    var subcategory = response.data;
+                    $('#subcategory').html('');
+                    $('#subcategory').append(
+                        '<option value="">---Select---</option>');
+                    for (var i = 0; i < subcategory.length; i++) {
+                        $('#subcategory').append(
+                            '<option value="' + subcategory[i].id + '">' + subcategory[i]
+                            .sub_category_name +
+                            '</option>');
+                    }
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }).trigger();
+    </script>
+
+    <script>
         $('#variaction').on('change', function() {
             if ($(this).is(':checked')) {
                 $('#colorPicker').prop('disabled', false);
@@ -526,7 +559,7 @@
                 selectedAttributes.each(function() {
                     var attributeId = $(this).val(); // Get attribute ID
                     var attributeName = $(this).data(
-                    'name'); // Get attribute name from data attribute
+                        'name'); // Get attribute name from data attribute
 
                     var attributeFieldsHtml = `
             <div class="attribute-fields" data-attribute="${attributeId}">
@@ -545,29 +578,29 @@
 
                 initializeTagify();
             });
-        });
 
-        function initializeTagify() {
-            $('.input-custom-dropdown').each(function() {
-                var tagifyInstance = $(this).data('tagify');
-                if (tagifyInstance) {
-                    // Update existing Tagify instance
-                    tagifyInstance.settings.whitelist = []; // Update settings if needed
-                    tagifyInstance.dropdown.maxItems = 20; // Update settings if needed
-                } else {
-                    // Initialize new Tagify instance
-                    new Tagify(this, {
-                        whitelist: [],
-                        maxTags: 10,
-                        dropdown: {
-                            maxItems: 20,
-                            classname: 'tags-look',
-                            enabled: 0,
-                            closeOnSelect: false
-                        }
-                    });
-                }
-            });
-        }
+            function initializeTagify() {
+                $('.input-custom-dropdown').each(function() {
+                    var tagifyInstance = $(this).data('tagify');
+                    if (tagifyInstance) {
+                        // Update existing Tagify instance
+                        tagifyInstance.settings.whitelist = []; // Update settings if needed
+                        tagifyInstance.dropdown.maxItems = 20; // Update settings if needed
+                    } else {
+                        // Initialize new Tagify instance
+                        new Tagify(this, {
+                            whitelist: [],
+                            maxTags: 10,
+                            dropdown: {
+                                maxItems: 20,
+                                classname: 'tags-look',
+                                enabled: 0,
+                                closeOnSelect: false
+                            }
+                        });
+                    }
+                });
+            }
+        });
     </script>
 @endsection

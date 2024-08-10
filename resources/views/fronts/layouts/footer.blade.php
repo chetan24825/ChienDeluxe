@@ -1,4 +1,4 @@
-<footer>
+<footer class="wow fadeInUp animated">
     <div class="container">
         <div class="row">
             <div class="col-2">
@@ -49,12 +49,13 @@
                 </ul>
             </div>
 
-            <div class="col-4 offset-1">
+            <div class="col-4 offset-1 d-flex justify-content-end">
                 @if (get_setting('web_logo'))
-                    <img loading='lazy' width="200" class="img-fluid"
+                    <img loading='lazy' width="200" class="img-fluid footer-logo"
                         src="{{ uploaded_asset(get_setting('web_logo')) }}" alt="Company Logo">
                 @endif
             </div>
+
         </div>
 
         <div class="d-flex justify-content-between py-4 my-4 border-top mb-0">
@@ -87,9 +88,6 @@
         </div>
     </div>
 </footer>
-
-
-
 
 {{--
 @livewire('cart-count-footer')

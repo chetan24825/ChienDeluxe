@@ -6,6 +6,7 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
+use App\Models\Color;
 
 class CategoryModel extends Component
 {
@@ -16,6 +17,14 @@ class CategoryModel extends Component
     public $slug;
     public $attri;
     public $products;
+
+
+    public $perPage = 5;
+
+    public function loadMore()
+    {
+        $this->perPage += 5;
+    }
 
     public function mount($slug)
     {
@@ -49,7 +58,8 @@ class CategoryModel extends Component
     public function render()
     {
 
-        return view('livewire.category-model')->extends('fronts.layouts.app');
+        return view('livewire.category-model', [
+            'colors' => Color::paginate($this->perPage),
+        ])->extends('fronts.layouts.app');
     }
 }
-

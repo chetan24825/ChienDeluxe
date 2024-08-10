@@ -51,14 +51,7 @@ class ProductModel extends Component
     public function render()
     {
         if ($this->product) {
-            $attribute_ids = explode(',', $this->attri);
-
             $products =  Product::with('category')
-                ->where(function ($query) use ($attribute_ids) {
-                    foreach ($attribute_ids as $id) {
-                        $query->orWhere('attribute_id', 'like', '%"' . $id . '"%');
-                    }
-                })
                 ->where('status', 1)
                 ->where('product_name', 'like', '%' . $this->product . '%')
                 ->orderBy('stock', 'DESC')

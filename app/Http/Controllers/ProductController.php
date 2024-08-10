@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     function toproductstore(Request $request)
     {
-        dd($request->all(), json_encode($request->attribute_id));
+        dd($request->all(), json_encode($request->attributes,JSON_UNESCAPED_UNICODE));
         $this->validate($request, [
             "category" => "required|bail",
             "product_name" => "required|bail",
@@ -43,7 +43,13 @@ class ProductController extends Controller
         $product->photos = $request->photos;
         $product->description = $request->description;
         $product->status = $request->status;
+
         $product->attribute_id = json_encode($request->attribute_id);
+        // $product->variaction = $request->variaction;
+        // $product->choice_attributes = json_encode($request->choice_attributes);
+        // $product->attributes = json_encode($request->attributes);
+        // $product->colors = json_encode($request->colors);
+
         $product->video_link = $request->video_link;
         $product->stock = $request->stock;
         $product->in_stock = $request->in_stock;
