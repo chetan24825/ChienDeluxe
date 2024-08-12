@@ -21,6 +21,7 @@ class ProductController extends Controller
 
     function toproductstore(Request $request)
     {
+        
         $this->validate($request, [
             "category" => "required|bail",
             "product_name" => "required|bail",
@@ -152,7 +153,7 @@ class ProductController extends Controller
                 $product_stock->qty = $request->current_stock;
                 $product_stock->save();
             }
-            dd($product->choice_options);
+       
 
             return redirect()->back()->with('success', 'Product Create Successfully');
         }
@@ -191,6 +192,7 @@ class ProductController extends Controller
 
     function toproductupdate(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request, [
             "category" => "required|bail",
             "product_name" => "required|bail",
@@ -304,7 +306,7 @@ class ProductController extends Controller
                     }
 
                     $product_stock->variant = $str;
-                    $product_stock->price = $request['price_'.str_replace('.', '_', $str)];
+                    $product_stock->price =  $request['price_'.str_replace('.', '_', $str)];
                     $product_stock->sku = $request['sku_'.str_replace('.', '_', $str)];
                     $product_stock->qty = $request['qty_'.str_replace('.', '_', $str)];
                     $product_stock->image = $request['img_'.str_replace('.', '_', $str)];

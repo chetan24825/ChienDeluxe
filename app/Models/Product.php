@@ -25,6 +25,11 @@ class Product extends Model
         return $this->hasMany(Review::class, 'product_id');
     }
 
+    public function stocks()
+    {
+        return $this->hasMany(ProductStock::class, 'product_id');
+    }
+
     public function averageRating()
     {
         return $this->reviews()->avg('rate') ?? 4; // Return 0 if no reviews

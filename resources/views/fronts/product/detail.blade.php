@@ -25,36 +25,28 @@
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="preview col-md-6">
-
                         <div class="preview-pic tab-content col-md-10">
-                            <div class="tab-pane active" id="pic-1"><img loading="lazy"
+                            <div class="tab-pane active" id="pic-0"><img loading="lazy"
                                     src="{{ uploaded_asset($products->thumbphotos) }}" /></div>
-
                             @foreach (explode(',', $products->photos) as $key => $image)
-                                <div class="tab-pane" id="pic-{{ $key }}">
+                                <div class="tab-pane" id="pic-{{ ++$key }}">
                                     <img loading="lazy" src="{{ uploaded_asset($image) }}" />
                                 </div>
                             @endforeach
-
                             @if ($products->video_link)
                                 <div class="tab-pane" id="pic-img">
                                     <iframe loading="lazy" src="{{ $products->video_link }}" width="500" height="400">
                                     </iframe>
                                 </div>
                             @endif
-
-
                         </div>
-
-
                         <ul class="preview-thumbnail nav nav-tabs col-md-2">
                             <li class="active">
-                                <a data-target="#pic-1" data-toggle="tab"><img loading="lazy"
+                                <a data-target="#pic-0" data-toggle="tab"><img loading="lazy"
                                         src="{{ uploaded_asset($products->thumbphotos) }}" /></a>
                             </li>
-
                             @foreach (explode(',', $products->photos) as $key => $image)
-                                <li><a data-target="#pic-{{ $key }}" data-toggle="tab">
+                                <li><a data-target="#pic-{{ ++$key }}" data-toggle="tab">
                                         <img loading="lazy" src="{{ uploaded_asset($image) }}" />
                                     </a></li>
                             @endforeach
@@ -68,72 +60,9 @@
                                     </a>
                                 </li>
                             @endif
-
-
                         </ul>
-
                     </div>
-                    <div class="details col-md-6">
-                        <div class="brand-share">
-                            <h3>{{ $products->category->category_name }}</h3>
-                            <i class="las la-heart"></i>
-                        </div>
-
-                        <h3 class="product-title">{{ $products->product_name }}</h3>
-                        <h4 class="price">Price: <span>$180</span></h4>
-                        <div class="choose-color">
-                            <h5 class="colors"><span class="mb-2">Choose Color:</span><br>
-                                <div class="mt-3">
-                                    <span class="color orange not-available" data-toggle="tooltip"
-                                        title="Not In store"></span>
-                                    <span class="color green"></span>
-                                    <span class="color blue"></span>
-                                </div>
-                            </h5>
-                        </div>
-
-
-                        <div class="choose-size">
-                            <h5 class="sizes"><span class="mb-2">Choose Size:</span> <a href="#">Size Guide</a>
-                            </h5>
-                            <select>
-                                <option>41</option>
-                                <option>41</option>
-
-                                <option>41</option>
-
-                                <option>41</option>
-                            </select>
-                        </div>
-
-                        <div class="descrition">
-                            <h3>Description</h3>
-                            <p>{!! $products->description !!}</p>
-
-                            <div class="product-code">
-                                <p>Product Code : 3DAM08AM10TH78</p>
-                            </div>
-                        </div>
-
-                        <div class="details-list">
-                            <h3>Details</h3>
-                            <ul>
-                                <li>Composition 70% Cashmere 30% Silk</li>
-                                <li>Oval neckline </li>
-                                <li>Lorem ipsum, dolor sit </li>
-
-                            </ul>
-
-                        </div>
-
-
-
-
-
-                        <div class="action">
-                            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                        </div>
-                    </div>
+                    @livewire('detail-cart', ['products' => $products])
                 </div>
             </div>
         </div>
