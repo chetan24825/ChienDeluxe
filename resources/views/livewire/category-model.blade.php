@@ -84,11 +84,11 @@
                                             <div class="form-row">
                                                 <div class="form-group col-md-12">
                                                     <label>Min</label>
-                                                    <input class="form-control mt-2" placeholder="$0" type="number">
+                                                    <input class="form-control mt-2" placeholder="0" type="number">
                                                 </div>
                                                 <div class="form-group text-right col-md-12">
                                                     <label>Max</label>
-                                                    <input class="form-control mt-2" placeholder="$1,0000" type="number">
+                                                    <input class="form-control mt-2" placeholder="1,0000" type="number">
                                                 </div>
                                             </div>
                                             <button class="btn btn-block btn-primary mt-2">Apply</button>

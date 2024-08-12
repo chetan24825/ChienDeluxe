@@ -40,9 +40,11 @@
                         </div>
 
                         <div class="remove-cart">
+                            @auth
+                                <a href="javascript:void(0)" wire:click='addToWishlist({{ $cart['product_id'] }})'><i
+                                        class="las la-heart"></i> Wishlist</a>
+                            @endauth
 
-                            <a href="javascript:void(0)" wire:click='addToWishlist({{ $cart['product_id'] }})'><i
-                                    class="las la-heart"></i> Wishlist</a>
                             <a href="javascript:void(0)" wire:click='tocarddelete({{ $cart['product_id'] }})'><i
                                     class="las la-trash-alt"></i>
                                 Remove</a>
@@ -121,7 +123,8 @@
                                 <span>
                                     {{ get_setting('symbol') }}
                                     {{ $totalNetAmount * ($promoCodeSession['promoCode']['amount'] / 100) }}
-                                    <i class="las la-trash-alt text-danger blockquote" wire:click='removePromoCode()'></i>
+                                    <i class="las la-trash-alt text-danger blockquote"
+                                        wire:click='removePromoCode()'></i>
                                 </span>
 
                             </p>
