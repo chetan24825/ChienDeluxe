@@ -18,6 +18,7 @@ class CategoryModel extends Component
     public $attri;
     public $products;
 
+    use WithPagination;
 
     public $perPage = 5;
 
@@ -58,7 +59,7 @@ class CategoryModel extends Component
     public function render()
     {
 
-        return view('livewire.category-model', [
+        return view('livewire.category-model',[
             'colors' => Color::paginate($this->perPage),
         ])->extends('fronts.layouts.app');
     }
