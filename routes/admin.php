@@ -49,9 +49,11 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::post('/product', [ProductController::class, 'toproductstore']);
         Route::get('/product/list', [ProductController::class, 'toproductlist'])->name('admin.product.list');
         Route::get('/product/edit/{id}', [ProductController::class, 'toproductedit'])->name('admin.product.edit');
-        Route::put('/product/update/{id}', [ProductController::class, 'toproductupdate'])->name('admin.product.update');
+        Route::post('/product/update/{id}', [ProductController::class, 'toproductupdate'])->name('admin.product.update');
         Route::get('/product/delete/{id}', [ProductController::class, 'toproductdelete'])->name('admin.product.delete');
         Route::post('/product/list', [ProductController::class, 'toproductsearch'])->name('admin.product.search');
+        Route::post('/products/sku_combination', [ProductController::class, 'sku_combination'])->name('admin.product.sku_combination');
+        Route::post('/products/sku_combination_edit', [ProductController::class, 'sku_combination_edit'])->name('admin.product.sku_combination_edit');
 
 
         //ajax
